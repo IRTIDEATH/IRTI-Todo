@@ -21,6 +21,8 @@ import UpdateTask from "./task/updateTask";
 
 const prisma = new PrismaClient();
 
+export const dynamic = "force-dynamic";
+
 const getTask = async () => {
   const res = await prisma.task.findMany({
     select: {
@@ -32,7 +34,7 @@ const getTask = async () => {
 };
 
 const Home = async () => {
-  const tasks = await getTask();
+  const [tasks] = await Promise.all([getTask()])
 
   return (
     <div className="w-full">
