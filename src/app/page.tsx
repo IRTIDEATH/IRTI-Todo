@@ -56,8 +56,8 @@ const Home = async () => {
         <div className="flex items-center mt-12">
           <Table>
             {tasks.map((task) => (
-              <TableBody>
-                <TableRow key={task.id}>
+              <TableBody key={task.id}>
+                <TableRow>
                   <TableCell className="font-medium text-sm">
                     {task.name}
                   </TableCell>
