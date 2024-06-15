@@ -16,6 +16,7 @@ datasource db {
 model Task {
   id Int @id @default(autoincrement())
   name String
+  complete Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -20,7 +20,8 @@ export const PATCH = async (request: Request, {params}:{params: {id: string}}) =
             id: Number(params.id)
         },
         data:{
-            name: body.name
+            name: body.name,
+            complete: body.complete
         }
     })
     return NextResponse.json(task, {status: 200})

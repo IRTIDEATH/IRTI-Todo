@@ -18,6 +18,8 @@ import { PrismaClient } from "@prisma/client";
 import AddTask from "./task/addTask";
 import DeleteTask from "./task/deleteTask";
 import UpdateTask from "./task/updateTask";
+import { useState } from "react";
+import { Checkedbox } from "@/components/Checked";
 
 const prisma = new PrismaClient();
 
@@ -28,6 +30,7 @@ const getTask = async () => {
     select: {
       id: true,
       name: true,
+      complete: true
     },
   });
   return res;
@@ -58,12 +61,12 @@ const Home = async () => {
             {tasks.map((task) => (
               <TableBody key={task.id}>
                 <TableRow>
-                  <TableCell className="font-medium text-sm">
+                  <TableCell className={`font-medium text-sm ${task.complete ? 'line-through' : 'leading-none'}`}>
                     {task.name}
                   </TableCell>
                   <TableCell className="space-x-2 flex items-center">
-                    <Checkbox/>
-                    <DeleteTask task={task} />
+                    <Checkedbox task={task}/>
+                    <DeleteTask task={task}/>
                     <UpdateTask task={task}/>
                   </TableCell>
                 </TableRow>
